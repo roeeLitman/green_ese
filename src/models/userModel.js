@@ -1,4 +1,3 @@
-const { request } = require('express')
 const mongoose = require('mongoose')
 
 const userSchma = new mongoose.Schema({
@@ -13,7 +12,7 @@ const userSchma = new mongoose.Schema({
     role:{
         type: String,
         enum:['soldier', 'commander'],
-        require:[true, 'you must to giv rool']
+        require:[true, 'you must to giv role']
     },
     area: {
         type: String,
