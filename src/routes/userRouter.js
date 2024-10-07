@@ -1,13 +1,16 @@
-const router = require('express').Router()
+const router = require("express").Router();
 // const {  } = require('../controllers/greenEysController')
-const { register, setSettings, getProfile } = require('../controllers/userController')
+const {
+  register,
+  setSettings,
+  getProfile,
+} = require("../controllers/userController");
+const { onlySoldiersAndCommanders } = require("../middlewares/authmiddeleware");
 
+router.post("/register", register);
 
-router.post('/register', register)
+router.get("/profile", onlySoldiersAndCommanders, getProfile);
 
-router.get('/profile', getProfile)
+router.get("/settings", onlySoldiersAndCommanders, setSettings);
 
-router.get('/settings', setSettings)
-
-module.exports = router
-
+module.exports = router;
