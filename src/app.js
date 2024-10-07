@@ -1,9 +1,11 @@
 const exp = require('express')
 const dotenv = require('dotenv')
+const {connectionToMongo} = require('./config/dbConfig')
 
 
 dotenv.config ()
 const port = process.env.PORT || 1415
+connectionToMongo()
 
 const app = exp()
 app.use(exp.json())
