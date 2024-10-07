@@ -8,21 +8,21 @@ const userSchma = new mongoose.Schema({
     },
     password: {
         type:String,
-        require:[true,"worning password"]
+        required:[true,"worning password"]
     },
     role:{
         type: String,
         enum:['soldier', 'commander'],
-        require:[true, 'you must to giv rool']
+        required:[true, 'you must to giv rool']
     },
     area: {
         type: String,
         enum:['center', 'north', ' south', 'west', ' east'],
-        require:[true, "please provide area"]
+        required:[true, "please provide area"]
     },
     units: {
         type:[Number],
-        require:[true, 'please specify at least one unit']
+        required:[true, 'please specify at least one unit']
     }
 })
 
