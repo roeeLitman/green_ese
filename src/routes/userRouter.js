@@ -1,11 +1,11 @@
 const router = require('express').Router()
-const { getPollById } = require('../controllers/greenEysController')
-const { register, setSettings } = require('../controllers/userController')
+// const {  } = require('../controllers/greenEysController')
+const { register, setSettings, getProfile } = require('../controllers/userController')
 
 
 router.post('/register', register)
 
-router.get('/profile', getPollById)
+router.get('/profile', getProfile)
 
 router.get('/settings', setSettings)
 
