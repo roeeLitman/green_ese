@@ -5,11 +5,13 @@ const jwt = require("jsonwebtoken");
 const login = async (user) => {
   try {
     //finde user
+    console.log(user);
+    
     const dbUser = await UserModel.findOne({ user_name: user.user_name });
     //check if exsist
     if (!dbUser) throw new Error("user not found");
-    //checked password
-    if (!(await bcrypt.compare(dbUser.password, user.password))) {
+    //checked password    
+    if (!(await bcrypt.compare(user.password, dbUser.password))) {
       throw new Error("worning password");
     }
     //create toke with id name and role

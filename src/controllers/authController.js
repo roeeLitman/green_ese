@@ -1,23 +1,26 @@
 const { UserModel } = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const {login: loginToSystem} = require('../services/authService')
 
 
-const login =  async(user) => {
+const login =  async(req, res) => {
     try {
-        const dbUser = await UserModel.findOne({user_name: user.user_name }) 
-
-        if (!dbUser) throw new Error('user not found')
-
-        if (!(await bcrypt.compare(user.password, dbUser.password))){
-            throw new Error('password worning')
-        }
-        const token = await jwt.sign({
-            user_name,
-            role: dbUser.role
-        }, process.env.TOKEN_SECRET)
-
+        //get token
+        const token = await loginToSystem(req.body)
+        //insert token into cooki
+        res.cookie("token", token)
+        //send atatus and message
+        res.status(201).json({
+            meg: 'you login in successfully' ,
+            token
+        })
+        
     } catch (err) {
+        console.log(err);
+        res.status(400).json({
+            err: err.message
+        })
         
     }
 }
