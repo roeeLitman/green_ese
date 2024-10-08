@@ -1,4 +1,3 @@
-const { UserModel } = require('../models/userModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const {login: loginToSystem} = require('../services/authService')
@@ -24,12 +23,13 @@ const login =  async(req, res) => {
         
     }
 }
-const loguot =  () => {
+const loguot = async (req, res) => {
     try {
-        
-    } catch (err) {
-        
-    }
+        res.clearCookie("token")
+        res.sendStatus(200)
+      } catch (err) {
+        res.sendStatus(500)
+      }
 }
 
 module.exports = {
